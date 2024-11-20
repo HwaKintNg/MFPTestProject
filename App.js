@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import type {Node} from 'react';
+import {Node, useEffect} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -25,6 +25,8 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+
+import { obtainAccessToken } from './mfp';
 
 /* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
  * LTI update could not be added via codemod */
@@ -60,6 +62,11 @@ const App: () => Node = () => {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
+
+  useEffect(() => {
+    console.log('try to obtain mfp token');
+    obtainAccessToken();
+  }, [])
 
   return (
     <SafeAreaView style={backgroundStyle}>
